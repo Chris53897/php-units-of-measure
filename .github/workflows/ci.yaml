@@ -40,7 +40,6 @@ jobs:
       - name: Install dependencies
         run: |
           composer install --verbose --prefer-dist --no-interaction -o
-          vendor/bin/simple-phpunit install
 
       - name: Execute tests
         run: vendor/bin/phpunit -c ./tests/phpunit.xml.dist ./tests --verbose
