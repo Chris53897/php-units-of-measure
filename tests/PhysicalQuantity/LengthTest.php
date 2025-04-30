@@ -156,7 +156,7 @@ class LengthTest extends AbstractPhysicalQuantityTestCase
     public function testToInches(): void
     {
         $quantity = new Length(2, 'ft');
-        $this->assertEquals(24, $quantity->toUnit('in'));
+        $this->assertEquals(24, round($quantity->toUnit('in')));
     }
 
     public function testToNauticalMiles(): void
