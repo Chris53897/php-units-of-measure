@@ -286,37 +286,14 @@ The workflow for this repository goes as follows:
 End users of this repository should only use tagged commits in production.  Users interested in the current 'soon-to-be-released' code may use `master`, with the understanding that it may change unexpectedly.  All other existing branches (if any) should be considered 'feature' branches in development, and not yet ready for use.
 
 ### Local Testing Environment
-There's a Vagrant virtual machine configuration included which is suitable for running the necessary unit tests.  To bring up the machine, make sure you have Vagrant and Virtualbox installed, and from the project root directory:
+There's a `Dockerfile` and a set of helper scripts in `scripts/` suitable for running the necessary unit tests.  With Docker installed, do:
 
+``` shell
+# Execute the lint checks
+./script/lint
 
-``` bash
-vagrant up
-vagrant ssh
-cd /project
+# Execute the unit tests
+./script/test
 ```
 
-### Setting Up for Testing
-The virtual machine development environment already has Composer installed.  Once you're ssh'ed into the virtual machine, install this project's dev dependencies:
-
-``` bash
-rm -rf vendor
-composer.phar update --verbose --prefer-dist
-```
-
-### Unit Tests
-All the tests associated with this project can be manually run with:
-
-``` bash
-vendor/bin/phpunit -c ./tests/phpunit.xml.dist ./tests
-```
-
-### CodeSniffer
-Codesniffer verifies that coding standards are being met.  Once the project is built with development dependencies, you can run the checks with:
-
-``` bash
-vendor/bin/phpcs --encoding=utf-8 --extensions=php --standard=./tests/phpcs.xml -nsp ./
-```
-
-### Continuous Integration
-The above tests are automatically run against Github commits with Travis-CI.
-- https://travis-ci.org/PhpUnitsOfMeasure/php-units-of-measure
+In addition, `./script/shell` will get you a bash shell in a temporary container.  Note that the hosts directory is mounted into the container, and changes to files inside the container will persist.
