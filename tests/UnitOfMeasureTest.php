@@ -2,9 +2,10 @@
 
 namespace PhpUnitsOfMeasureTest;
 
+use PHPUnit\Framework\TestCase;
 use PhpUnitsOfMeasure\UnitOfMeasure;
 
-class UnitOfMeasureTest extends \PHPUnit_Framework_TestCase
+class UnitOfMeasureTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @covers \PhpUnitsOfMeasure\UnitOfMeasure::__construct

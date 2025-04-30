@@ -22,6 +22,3 @@ Desktop.ini
 ## From https://github.com/github/gitignore
 ### SASS Ignores - "Sassy CSS" http://sass-lang.com/
 *.sass-cache
-
-# Vagrant files
-/.vagrant/

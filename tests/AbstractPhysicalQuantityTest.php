@@ -2,7 +2,7 @@
 
 namespace PhpUnitsOfMeasureTest;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use PhpUnitsOfMeasure\AbstractPhysicalQuantity;
 use PhpUnitsOfMeasure\UnitOfMeasureInterface;
 use PhpUnitsOfMeasure\Exception\PhysicalQuantityMismatch;
@@ -20,7 +20,7 @@ use PhpUnitsOfMeasureTest\Fixtures\PhysicalQuantity\Woogosity;
  *
  * @runTestsInSeparateProcesses
  */
-class AbstractPhysicalQuantityTest extends PHPUnit_Framework_TestCase
+class AbstractPhysicalQuantityTest extends \PHPUnit\Framework\TestCase
 {
     protected function getTestUnitOfMeasure($name, $aliases = [])
     {
@@ -230,10 +230,10 @@ class AbstractPhysicalQuantityTest extends PHPUnit_Framework_TestCase
     {
         $newUnit = $this->getTestUnitOfMeasure('noconflict', ['definitelynoconflict_1', 'definitelynoconflict_2']);
         Wonkicity::addUnit($newUnit);
-        
+
         $someExistingUnits = ['u', 'uvees', 'v', 'vorp', 'noconflict', 'definitelynoconflict_1', 'definitelynoconflict_2'];
         $unexistingUnits = ['kg', 'l', 'definitelynoconflict_'];
-        
+
         foreach ($someExistingUnits as $someExistingUnit) {
             $this->assertTrue(Wonkicity::isUnitDefined($someExistingUnit), "$someExistingUnit is not defined");
         }
@@ -241,7 +241,7 @@ class AbstractPhysicalQuantityTest extends PHPUnit_Framework_TestCase
             $this->assertFalse(Wonkicity::isUnitDefined($unexistingUnit), "$unexistingUnit is not defined");
         }
     }
-    
+
     /**
      * @covers \PhpUnitsOfMeasure\AbstractPhysicalQuantity::listAllUnits
      */
@@ -249,7 +249,7 @@ class AbstractPhysicalQuantityTest extends PHPUnit_Framework_TestCase
     {
         $newUnit = $this->getTestUnitOfMeasure('noconflict', ['definitelynoconflict_1', 'definitelynoconflict_2']);
         Wonkicity::addUnit($newUnit);
-        
+
         $allUnits = Wonkicity::listAllUnits();
         $expected = [];
         $expected['u'] = ['uvee', 'uvees'];
